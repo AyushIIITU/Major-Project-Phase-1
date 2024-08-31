@@ -1,12 +1,15 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
+import NavBarReact from './Components/NavBar/NavBar'
+// import { NavbarReact } from './Components/NavBar/NavBar'
 
 function App() {
 
 
-  return (
-    <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  return (<>
+    <NavBarReact/>
+    <Outlet/>
+  </>
   )
 }
 
