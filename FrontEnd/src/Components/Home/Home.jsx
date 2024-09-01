@@ -10,7 +10,7 @@ function Home() {
     <div className={style["container"]}>
       <div className={style["info"]}>
         <h1>Looking For Productive App</h1>
-        <p>Which will focus on your development journey and say focus througout your daily life and with all the nessecary funtionality</p>
+        <p>Which will focus on your development journey and help you to stay focus througout your daily life and with all the nessecary funtionality</p>
         <button>Get Started</button>
       </div>
       <div className={style["image"]}>
