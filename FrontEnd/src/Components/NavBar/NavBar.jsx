@@ -185,7 +185,7 @@ const NavBarReact = () => {
                             Security
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Your customers' data will be safe and secure.
+                            Your customers&apos; data will be safe and secure.
                           </p>
                         </div>
                       </a>
@@ -214,7 +214,7 @@ const NavBarReact = () => {
                             Integrations
                           </p>
                           <p className="mt-1 text-sm text-gray-500">
-                            Connect with third-party tools that you're already
+                            Connect with third-party tools that you&apos;re already
                             using.
                           </p>
                         </div>
