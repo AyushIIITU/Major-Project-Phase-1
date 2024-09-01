@@ -1,6 +1,4 @@
-// import React from 'react'
 
-import { DATE } from "mysql/lib/protocol/constants/types"
 import { Link } from "react-router-dom"
 
 function Footer() {
