@@ -5,6 +5,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from './Components/Home/Home.jsx';
+import Diary from './Components/Diary/Diary.jsx';
 const router=createBrowserRouter(
   [
     {
@@ -14,6 +15,10 @@ const router=createBrowserRouter(
         {
       path: "",
       element: <Home/>,
+        },
+        {
+          path: "/diary",
+          element: <Diary/>,
         }
       ]
 
