@@ -8,7 +8,9 @@ import animation4 from "../../Content/Lottie/developer-discussing-different-opti
 import LottieAnimation from "../Common/LottieAnimation";
 const Home2 = () => {
   return (
-    <div className={styles.siteHeader}>
+    <div className="bg-secondary"
+    style={{color:"white"}}
+    >
       <main>
         {/* Section 1 */}
         <section className={styles.section}>
@@ -18,7 +20,7 @@ const Home2 = () => {
                 path={animation2}
                 className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
               />
-              <div className="flex flex-col sm:text-lg justify-center items-center text-center md:text-left w-full md:w-1/2 lg:w-2/3">
+              <div className="flex  flex-col sm:text-lg justify-center items-center text-center md:text-left w-full md:w-1/2 lg:w-2/3">
                 <p>
                   Create a productive study environment with our real-time room
                   creation feature. Share your{" "}

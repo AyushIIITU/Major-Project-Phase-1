@@ -1,31 +1,32 @@
-import React from 'react'
+import React from "react";
 import ReactDOM from "react-dom/client";
-import App from './App.jsx'
-import './index.css'
+import App from "./App.jsx";
+import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Home from './Components/Home/Home.jsx';
-import Diary from './Components/Diary/Diary.jsx';
-const router=createBrowserRouter(
-  [
-    {
-      path: "/",
-        element: <App />,
-      children:[
-        {
-      path: "",
-      element: <Home/>,
-        },
-        {
-          path: "/diary",
-          element: <Diary/>,
-        }
-      ]
-
-    
-    }
-  ]
-)
+import Home from "./Components/Home/Home.jsx";
+import Diary from "./Components/Diary/Diary.jsx";
+import LoginIn from "./Components/Auth/LogIn.jsx";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "diary",
+        element: <Diary />,
+      },
+    ],
+  },
+  {
+    path:"login",
+    element:<LoginIn/>
+  }
+]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <ThemeProvider/> */}

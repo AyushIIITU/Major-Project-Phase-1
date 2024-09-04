@@ -6,7 +6,7 @@ import animation1 from "../../Content/Lottie/Animation - 1725210958916.json"
 function Home() {
   return (<>
   
-     <div className={style["content"]}>
+     <div className={`${style["content"]} bg-primary`}>
     <div className={style["container"]}>
       <div className={style["info"]}>
         <h1>Looking For Productive App</h1>

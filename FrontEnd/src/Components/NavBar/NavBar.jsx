@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const NavBarReact = () => {
   const [open, setOpen] = React.useState(false);
   const [flyer, setFlyer] = React.useState(false);
@@ -7,34 +8,35 @@ const NavBarReact = () => {
   return (
     <>
       {/* This example requires Tailwind CSS v2.0+ */}
-      <div className="relative bg-white">
+      <div className="relative bg-[linear-gradient(315deg,_black,_#5E35B1,_white)] z-10 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a href="#">
                 <span className="sr-only">Workflow</span>
-                <img
-                  className="h-8 w-auto sm:h-10"
-                  src="LOGO.svg"
-                  alt=""
-                />
+                <div
+                  className="w-auto text-purple-900 text-balance text-center text-lg"
+                >
+                 <span className="text-black text-3xl">&lt;</span>Code<span className="text-black text-2xl">/</span>मित्र<span className="text-black text-3xl">&gt;</span>
+                </div>
               </a>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
               <button
                 type="button"
-                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                className="bg-blue-100 rounded-md p-2 inline-flex items-center justify-center  hover: hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                 onClick={() => setOpen(!open)}
               >
-                <span className="sr-only">Open menu</span>
+                <span className="sr-only ">Open menu</span>
                 {/* Heroicon name: outline/menu */}
                 <svg
                   className="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
+                  // fill="#ffffff"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  stroke="#000000"
                   aria-hidden="true"
+
                 >
                   <path
                     strokeLinecap="round"
@@ -47,11 +49,11 @@ const NavBarReact = () => {
             </div>
             <nav className="hidden md:flex space-x-10">
               <div className="relative">
-                {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
+                {/* Item active: "text-gray-900", Item inactive: "" */}
                 <button
                   type="button"
                   className="
-                   group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 pb-8'
+                   group  rounded-md  inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 pb-8'
                   "
                   onClick={() => (setFlyer(!flyer), setFlyerTwo(false))}
                 >
@@ -59,13 +61,13 @@ const NavBarReact = () => {
                   {/*
               Heroicon name: solid/chevron-down
 
-              Item active: "text-gray-600", Item inactive: "text-gray-400"
+              Item active: "text-gray-600", Item inactive: ""
             */}
                   <svg
                     className={
                       flyer === true
-                        ? "transform rotate-180 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 transition ease-out duration-200"
-                        : "transform rotate-0 transition ease-out duration-200 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                        ? "transform rotate-180 ml-2 h-5 w-5  group-hover: transition ease-out duration-200"
+                        : "transform rotate-0 transition ease-out duration-200 ml-2 h-5 w-5  group-hover:"
                     }
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -124,7 +126,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Analytics
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Get a better understanding of where your traffic is
                             coming from.
                           </p>
@@ -154,7 +156,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Engagement
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Speak directly to your customers in a more
                             meaningful way.
                           </p>
@@ -184,7 +186,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Security
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Your customers&apos; data will be safe and secure.
                           </p>
                         </div>
@@ -213,7 +215,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Integrations
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Connect with third-party tools that you&apos;re already
                             using.
                           </p>
@@ -243,7 +245,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Automations
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Build strategic funnels that will drive your
                             customers to convert
                           </p>
@@ -258,7 +260,7 @@ const NavBarReact = () => {
                         >
                           {/* Heroicon name: outline/play */}
                           <svg
-                            className="flex-shrink-0 h-6 w-6 text-gray-400"
+                            className="flex-shrink-0 h-6 w-6 "
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -288,7 +290,7 @@ const NavBarReact = () => {
                         >
                           {/* Heroicon name: outline/phone */}
                           <svg
-                            className="flex-shrink-0 h-6 w-6 text-gray-400"
+                            className="flex-shrink-0 h-6 w-6 "
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -312,34 +314,34 @@ const NavBarReact = () => {
 
               <a
                 href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+                className="text-base font-medium  hover:text-gray-900"
               >
                 Pricing
               </a>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              <Link
+                to="diary"
+                className="text-base font-medium  hover:text-gray-900"
               >
-                Docs
-              </a>
+                Diary
+              </Link>
               <div className="relative">
-                {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
+                {/* Item active: "text-gray-900", Item inactive: "" */}
                 <button
                   type="button"
-                  className="group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="group  rounded-md  inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   onClick={() => (setFlyerTwo(!flyerTwo), setFlyer(false))}
                 >
                   <span>More</span>
                   {/*
               Heroicon name: solid/chevron-down
 
-              Item active: "text-gray-600", Item inactive: "text-gray-400"
+              Item active: "text-gray-600", Item inactive: ""
             */}
                   <svg
                     className={
                       flyerTwo === true
-                        ? "transform rotate-180 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 transition ease-out duration-200"
-                        : "ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                        ? "transform rotate-180 ml-2 h-5 w-5  group-hover: transition ease-out duration-200"
+                        : "ml-2 h-5 w-5  group-hover:"
                     }
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -397,7 +399,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Help Center
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Get all of your questions answered in our forums or
                             contact support.
                           </p>
@@ -427,7 +429,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Guides
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Learn how to maximize our platform to get the most
                             out of it.
                           </p>
@@ -457,7 +459,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Events
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             See what meet-ups and other events we might be
                             planning near you.
                           </p>
@@ -487,7 +489,7 @@ const NavBarReact = () => {
                           <p className="text-base font-medium text-gray-900">
                             Security
                           </p>
-                          <p className="mt-1 text-sm text-gray-500">
+                          <p className="mt-1 text-sm ">
                             Understand how we take your privacy seriously.
                           </p>
                         </div>
@@ -495,7 +497,7 @@ const NavBarReact = () => {
                     </div>
                     <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
                       <div>
-                        <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">
+                        <h3 className="text-sm tracking-wide font-medium  uppercase">
                           Recent Posts
                         </h3>
                         <ul className="mt-4 space-y-4">
@@ -541,18 +543,18 @@ const NavBarReact = () => {
               </div>
             </nav>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <a
-                href="#"
-                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+              <Link
+                to="login"
+                className="whitespace-nowrap text-base font-medium  hover:text-gray-900"
               >
                 Sign in
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="#"
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 Sign up
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -574,23 +576,23 @@ const NavBarReact = () => {
               : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
           }
         >
-          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+          <div className="rounded-lg shadow-lg ring-1 ring-secondary ring-opacity-5 bg-purple-300 divide-y-2 divide-primary">
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
                 <div>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    src="/LOGO1.svg"
                     alt="Workflow"
                   />
                 </div>
                 <div className="-mr-2">
                   <button
                     type="button"
-                    className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    className="bg-black rounded-md p-2 inline-flex items-center justify-center  hover: hover:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                     onClick={() => setOpen(!open)}
                   >
-                    <span className="sr-only">Close menu</span>
+                    <span className="sr-only bg-slate-900">Close menu</span>
                     {/* Heroicon name: outline/x */}
                     <svg
                       className="h-6 w-6"
@@ -612,8 +614,8 @@ const NavBarReact = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  <a
-                    href="#"
+                  <Link
+                    to="diary"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
                     {/* Heroicon name: outline/chart-bar */}
@@ -633,9 +635,9 @@ const NavBarReact = () => {
                       />
                     </svg>
                     <span className="ml-3 text-base font-medium text-gray-900">
-                      Analytics
+                      Diary
                     </span>
-                  </a>
+                  </Link>
                   <a
                     href="#"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
@@ -793,7 +795,7 @@ const NavBarReact = () => {
                 >
                   Sign up
                 </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
+                <p className="mt-6 text-center text-base font-medium ">
                   Existing customer?
                   <a href="#" className="text-indigo-600 hover:text-indigo-500">
                     Sign in
