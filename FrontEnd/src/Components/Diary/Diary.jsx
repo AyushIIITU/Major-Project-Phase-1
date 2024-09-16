@@ -61,7 +61,6 @@ export default function DiaryComponent() {
       <div className="flex flex-col items-center">
       <label
         htmlFor="date"
-        onClick={console.log("bhjv")}
         // className="flex flex-col justify-center w-[250px] h-[190px] items-center text-center text-neutral-700 cursor-pointer p-[5px] border-2 border-dashed border-[#ccc]"
       >
         {/* <CalenderSvg /> */}
@@ -76,7 +75,7 @@ export default function DiaryComponent() {
         aria-label="Select date"
       />
     </div>
-    <div className="relative z-20 w-auto">
+    <div className="relative  w-auto">
   <input 
     required 
     type="text" 
