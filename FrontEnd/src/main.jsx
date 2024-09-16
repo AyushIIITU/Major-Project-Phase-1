@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Home from "./Components/Home/Home.jsx";
 import Diary from "./Components/Diary/Diary.jsx";
 import LoginIn from "./Components/Auth/LogIn.jsx";
+import SignUp from "./Components/Auth/SignUp.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path:"login",
     element:<LoginIn/>
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
