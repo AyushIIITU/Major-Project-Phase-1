@@ -8,6 +8,8 @@ import Home from "./Components/Home/Home.jsx";
 import Diary from "./Components/Diary/Diary.jsx";
 import LoginIn from "./Components/Auth/LogIn.jsx";
 import SignUp from "./Components/Auth/SignUp.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
+// import Profile from "./Components/Profile/Profile.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
         path: "diary",
         element: <Diary />,
       },
+      {
+        path:"profile",
+        element:<Profile/>
+      }
     ],
   },
   {

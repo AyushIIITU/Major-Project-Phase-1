@@ -8,8 +8,8 @@ import animation4 from "../../Content/Lottie/developer-discussing-different-opti
 import LottieAnimation from "../Common/LottieAnimation";
 const Home2 = () => {
   return (
-    <div className="bg-secondary"
-    style={{color:"white"}}
+    <div className="bg-secondary text-white"
+    // style={{color:"whi te"}}
     >
       <main>
         {/* Section 1 */}
