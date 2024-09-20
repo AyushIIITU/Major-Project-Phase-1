@@ -573,7 +573,7 @@ const NavBarReact = () => {
           className={
             open
               ? "opacity-100 scale-100 transition ease-out duration-200 absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
-              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+              : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 hidden transition transform origin-top-right md:hidden"
           }
         >
           <div className="rounded-lg shadow-lg ring-1 ring-secondary ring-opacity-5 bg-purple-300 divide-y-2 divide-primary">

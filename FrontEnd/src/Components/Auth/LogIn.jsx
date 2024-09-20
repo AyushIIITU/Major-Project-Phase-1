@@ -2,6 +2,9 @@
 // import IIITUNA from "../../Images/IIITULogo.png";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../Utils/API";
+import axios from "axios";
+import toast from "react-hot-toast";
 // import axios from "axios";
 // import second from ''
 
@@ -16,23 +19,20 @@ function LoginIn() {
     const email = refEmail.current.value;
     const password = refPassword.current.value;
 
-    // try {
-    //   const response = await axios.post("http://localhost:3000/student/login", {
-    //     email: email,
-    //     password: password
-    //   });
-    //   console.log(response.data);
-    //   localStorage.setItem('token', response.data.token);
-    //   localStorage.setItem('StudentName', response.data.user);
-    //   localStorage.setItem('StudentRoomNo', response.data.roomNo);
-    //   localStorage.setItem('StudentId', response.data.id);
-    //   localStorage.setItem('PhoneNo',response.data.phoneNo);
-
-    //   // Redirect to StudentPanel upon successful login
-    //   navigate("/StudentPanel");
-    // } catch (error) {
-    //   console.log("Error in Authorization:", error);
-    // }
+    try {
+      const response = await axios.post(`${API}/api/user/login`, {
+        email: email,
+        password: password
+      });
+      console.log(response.data);
+      if(response.status===200){
+        toast.success("Login");
+        localStorage.setItem('token',response.data.token);
+        navigate('/');
+      }
+    } catch (error) {
+      console.log("Error in Authorization:", error);
+    }
   };
 
   return (

@@ -1,91 +1,121 @@
 import { useState, useEffect, useRef } from 'react';
-import { format, parse } from 'date-fns';
-import { diaryDummyData } from './diarydummyData';
+import { format } from 'date-fns';
 import { IoMdAdd } from "react-icons/io";
-// import CalenderSvg from "../../Content/Svg/CalenderSvg.jsx";
 import style from "./Diary.module.css";
+import axios from 'axios';
+import { API } from "../../Utils/API";
 
 export default function DiaryComponent() {
+  const token = localStorage.getItem('token');
   const [todos, setTodos] = useState([]);
-  const refTask = useRef();
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'));
-  const inputRef = useRef(null);
+  const refTask = useRef(null); // Correct ref for task input
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
   };
 
-  // const handleSvgClick = () => {
-  //   // Programmatically open the date picker
-  //   if (inputRef.current) {
-  //     inputRef.current.click();
-  //   }
-  // };
+  // Fetch diary data and organize by date
+  const fetchDiary = async () => {
+    try {
+      const response = await axios.get(`${API}/api/diary`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  // const formattedDate = selectedDate ? format(new Date(selectedDate), 'MM/dd/yyyy') : '';
+      const task = response.data;
+      const organisedTask = [];
 
-  useEffect(() => {
-    // Load initial data from dummy function
-    const initialTodos = diaryDummyData().map(entry => ({
-      id: entry._id,
-      text: entry.text.join(', '),
-      date: format(parse(entry.Date, 'yyyy-MM-dd', new Date()), 'yyyy-MM-dd')
-    }));
-    setTodos(initialTodos);
-  }, []);
+      task.forEach((t) => {
+        const taskDate = format(new Date(t.createdAt), 'yyyy-MM-dd');
 
-  const handleAddTodo = (e) => {
-    e.preventDefault(); // Prevent default form submission
+        // Find existing group for this date or create a new one
+        const existingGroup = organisedTask.find(group => group.date === taskDate);
+        if (existingGroup) {
+          existingGroup.taskArray.push({
+            _id: t._id,
+            task: t.task,
+            type: t.type
+          });
+        } else {
+          organisedTask.push({
+            date: taskDate,
+            taskArray: [{
+              _id: t._id,
+              task: t.task,
+              type: t.type
+            }]
+          });
+        }
+      });
+      console.log(organisedTask);
+      
 
-    const newTodo = {
-      id: Date.now(),
-      text: refTask.current.value,
-      date: selectedDate
-    };
-
-    setTodos([...todos, newTodo]);
-    refTask.current.value = ''; // Clear the input field
+      setTodos(organisedTask);
+    } catch (err) {
+      console.error('Error fetching diary data:', err);
+    }
   };
 
-  const groupedTodos = todos.reduce((acc, todo) => {
-    if (!acc[todo.date]) {
-      acc[todo.date] = [];
+  const addDiary = async (e) => {
+    e.preventDefault();
+    try {
+      const text = refTask.current.value;
+
+      const response = await axios.post(
+        `${API}/api/diary`,
+        {
+          task: text,
+          type: "productive", // Assuming the type field
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Optionally refetch diary data or update state locally after adding a new task
+      fetchDiary();
+
+    } catch (err) {
+      console.error('Error adding diary entry:', err);
     }
-    acc[todo.date].push(todo);
-    return acc;
-  }, {});
+  };
+
+  useEffect(() => {
+    fetchDiary();
+  }, []);
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      <form onSubmit={handleAddTodo} className="flex space-x-2 mb-4 flex-wrap gap-y-3 items-center justify-center">
-      <div className="flex flex-col items-center">
-      <label
-        htmlFor="date"
-        // className="flex flex-col justify-center w-[250px] h-[190px] items-center text-center text-neutral-700 cursor-pointer p-[5px] border-2 border-dashed border-[#ccc]"
-      >
-        {/* <CalenderSvg /> */}
-      </label>
-      <input
-        type="date"
-        defaultValue={selectedDate}
-        onChange={handleDateChange}
-        // className="hidden"
-        ref={inputRef}
-        id="date" // This id should match the htmlFor of the label
-        aria-label="Select date"
-      />
-    </div>
-    <div className="relative  w-auto">
-  <input 
-    required 
-    type="text" 
-    placeholder="Daily✍️"
-    className="p-4 outline-none bg-transparent max-w-[400px] w-full rounded-md text-black border border-gray-300 text-base"
-  />
-  <span className="absolute rounded-xl left-0 text-xs transform translate-x-3 -translate-y-2 px-1 bg-gray-900 border border-gray-300 text-gray-300">
-    Write Here :
-  </span>
-</div>
+      <form onSubmit={addDiary} className="flex space-x-2 mb-4 flex-wrap gap-y-3 items-center justify-center">
+        {/* <div className="flex flex-col items-center">
+          <label htmlFor="date">
+          </label>
+          <input
+            type="date"
+            value={selectedDate}
+            onChange={handleDateChange}
+            id="date"
+            aria-label="Select date"
+          />
+        </div> */}
+
+        <div className="relative w-auto">
+          <input
+            required
+            type="text"
+            placeholder="Daily✍️"
+            className="p-4 outline-none bg-transparent max-w-[400px] w-full rounded-md text-black border border-gray-300 text-base"
+            ref={refTask} // Correct input ref for task
+          />
+          <span className="absolute rounded-xl left-0 text-xs transform translate-x-3 -translate-y-2 px-1 bg-gray-900 border border-gray-300 text-gray-300">
+            Write Here:
+          </span>
+        </div>
 
         <button
           type="submit"
@@ -96,18 +126,18 @@ export default function DiaryComponent() {
       </form>
 
       <div>
-        {Object.entries(groupedTodos).map(([date, dateTodos]) => (
+        {todos.map(({ date, taskArray }) => (
           <ul key={date} className={style.page}>
-            <h2 className="text-lg font-semibold mb-2">{format(new Date(date), 'MMMM d, yyyy')}</h2>
-            {dateTodos.map((todo, index) => (
-              <li key={todo.id} className="flex items-center space-x-2 p-2 border border-gray-200 rounded-md shadow-sm">
+            <h2 className="text-lg font-semibold mb-2">
+              {format(new Date(date), 'MMMM d, yyyy')}
+            </h2>
+            {taskArray.map((todo, index) => (
+              <li key={todo._id} className="flex items-center space-x-2 p-2 border border-gray-200 rounded-md shadow-sm">
                 <div className={style.margin}></div>
                 <span className="font-medium">{index + 1}.</span>
-                <span className="flex-grow">{todo.text}</span>
-                <button
-                  className="px-2 py-1 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
-                >
-                  Action
+                <span className="flex-grow">{todo.task}</span>
+                <button className="px-2 py-1 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400">
+                  {todo.type}
                 </button>
               </li>
             ))}

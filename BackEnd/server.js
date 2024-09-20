@@ -4,11 +4,13 @@ const cors=require('cors');
 const db=require('./db');
 const app=express();
 const userRoutes=require('./Api/Routes/User.routes');
+const diaryRoutes=require('./Api/Routes/Diary.routes');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 const PORT=process.env.PORT||3000;
 app.use('/api/user',userRoutes);
+app.use('/api/diary',diaryRoutes);
 app.get("/",(req,res)=>{
     res.send("Server is ok");
 })

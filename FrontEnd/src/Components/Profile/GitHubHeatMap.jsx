@@ -42,14 +42,16 @@ const GitHubHeatmap = ({ username }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <h3 className="text-2xl font-semibold mb-4">GitHub Contributions for {username}</h3>
-      <div className="grid grid-cols-7 gap-1 max-w-lg -rotate-90">
+    <div className="flex flex-col items-center overflow-auto justify-center ">
+      {/* <h3 className="text-2xl font-semibold mb-4">GitHub Contributions for {username}</h3> */}
+      
+      {/* Responsive grid: rotation removed on smaller screens */}
+      <div className="grid grid-cols-7 gap-1 max-w-full sm:max-w-lg -rotate-90">
         {contributions.length > 0 ? (
           contributions.map((day, index) => (
             <div
               key={index}
-              className={`w-6 h-6 rounded ${getIntensityClass(day.intensity)}`}
+              className={`w-[1vh] h-[1vh]  sm:w-6 sm:h-6  rounded ${getIntensityClass(day.intensity)}`}
               title={`${day.date}: ${day.count} contributions`}
               style={{ backgroundColor: day.color }}
             ></div>

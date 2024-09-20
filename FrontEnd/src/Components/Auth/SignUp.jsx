@@ -1,13 +1,47 @@
+import axios from "axios";
 import { useRef } from "react";
 import { CgProfile } from "react-icons/cg";
+import { API } from "../../Utils/API";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 function SignUp() {
   const refEmail = useRef();
   const refPassword = useRef();
   const refLeetCodeProfile = useRef();
   const refGitHubProfile = useRef();
   const refName = useRef();
+  const navigate=useNavigate();
   const handleLoginAuth = async (e) => {
     e.preventDefault();
+ try {
+     const email=refEmail.current.value;
+     const password=refPassword.current.value;
+     const leetcode=refLeetCodeProfile.current.value;
+     const github=refGitHubProfile.current.value;
+     const name=refName.current.value;
+     const response=await axios.post(`${API}/api/user`,{
+          email,
+          password,
+          leetcode,
+          github,
+          name
+      
+     });
+      console.log(response);
+      if(response.status===201){
+        toast.success("register");
+        navigate('/login')
+      }
+ } catch (err) {
+  console.error(err);
+  
+ }
+    
+
+
+
+
+
   };
 
   return (

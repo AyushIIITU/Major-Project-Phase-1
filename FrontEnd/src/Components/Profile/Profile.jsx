@@ -18,7 +18,7 @@ function Profile() {
   return (
     <>
     <div className="border-solid border-[20px] border-green-800  rounded-lg">
-            <div className="flex justify-center ">
+            <div className="flex justify-center overflow-auto ">
             {
                 SKILL.map((skill, index) => {
                     return (
@@ -36,9 +36,9 @@ function Profile() {
           alt={`${username}'s LeetCode Card`}
           className="leetcode-image"
         />
+      <GitHubHeatmap username="AyushIIITU" />
       </div>
       {/* <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4"> */}
-      <GitHubHeatmap username="AyushIIITU" />
     </div>
     {/* </div> */}
     </>
