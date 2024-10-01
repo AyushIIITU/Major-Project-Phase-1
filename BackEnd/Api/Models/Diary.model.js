@@ -7,6 +7,7 @@ const diarySchema = new mongoose.Schema({
     },
     type:{
         type:String,
+        enum:["Productive","Non-Productive"],
         required:true
     
     },

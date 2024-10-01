@@ -43,6 +43,25 @@ const DiaryController={
             console.log("Error in updateDiary",error);
         }
     },
+    alterType:async (req,res) => {
+      try {
+        const diaryId = req.params.id;
+        console.log(req.user);  
+        
+        // const { type } = req.body;
+        if(!req.user){
+            return res.status(401).json({message:"You are not authorized to access this resource."})
+        }
+        const {type}=await diary.findById(diaryId);
+        const typee=type==="Productive"?"Non-Productive":"Productive";
+        const diaryData = await diary.findByIdAndUpdate(diaryId,{type:typee});
+        res.status(200).json(diaryData);
+
+      } catch (err) {
+        console.error(err);
+        
+      }  
+    },
     deleteDiary:async(req,res)=>{
         try {
             const diaryId = req.params.id;
